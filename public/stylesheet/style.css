@@ -42,7 +42,7 @@ li a{
 }
 
 .content{
-    height: 455px;
+    /* height: auto; */
     width: 100%;
     background-color: tan;
 }

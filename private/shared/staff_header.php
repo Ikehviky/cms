@@ -1,5 +1,7 @@
 <?php 
     if(!isset($page_title)){ $page_title = 'Staff Area'; }
+
+    db_connect($db);
 ?>
 
 <!DOCTYPE html>
