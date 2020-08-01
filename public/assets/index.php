@@ -10,7 +10,7 @@
             <li><a class="menu" href="<?php echo url_for('/assets/subject/index.php');?>">Subjects</a></li>
             <li><a class="menu" href="<?php echo url_for('/assets/pages/index.php');?>">Pages</a></li>
         </ul>
-    </div
+    </div>
 </div>
 
 <?php include(SHARED_PATH . '/staff_footer.php');?>
