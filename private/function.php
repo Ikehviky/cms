@@ -7,9 +7,10 @@ if($script_path[0] != '/'){
     return WWW_ROOT . $script_path;
 }
 
-function u($script=''){
+function u($string=""){
     return urlencode($string);
 }
+
 
 function raw_u($script=''){
     return rawurlencode($string);

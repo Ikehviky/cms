@@ -5,25 +5,27 @@ if(!isset($_GET['id'])){
     redirect_to(url_for('/assets/subject/index.php'));
 }
 $id = $_GET['id'];
-$menu_name = '';
-$position = '';
-$visible = '';
 
 if(is_post_request()){
 
-    $menu_name = $_POST['menu_name'] ?? '';
-    $position = $_POST['position'] ?? '';
-    $visible = $_POST['visible'] ?? '';
+    $subject = [];
+    $subject['id'] = $id;
+    $subject['menu_name'] = $_POST['menu_name'] ?? '';
+    $subject['position'] = $_POST['position'] ?? '';
+    $subject['visible'] = $_POST['visible'] ?? '';
 
-    echo "Form Parameters";
-    echo "</br>";
-    echo "Menu Name: " . $menu_name . '</br>';
-    echo "Position: " . $position . '</br>';
-    echo "Visible: " . $visible . '</br>';
-} 
+    $result = update_subject($subject);
+    redirect_to(url_for('/assets/subject/details.php?id=' . $id ));
+
+}else{
+
+    $subject = find_subject_by_id($id);
+
+}
+
 ?>
-  
-<?php $page_title = 'edit Subject'; ?>
+
+<?php $subject_title = 'Edit Subject'; ?>
 
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
@@ -35,15 +37,15 @@ if(is_post_request()){
     <h1>Edit Subject</h1>
 
     <form action="" method="post">
-      <dl>        
+      <dl>
         <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="<?php echo $menu_name; ?>" /></dd>
+        <dd><input type="text" name="menu_name" value="<?php echo h($subject['menu_name']);?>" /></dd>
       </dl>
       <dl>
         <dt>Position</dt>
         <dd>
           <select name="position">
-            <option value="1" if($position = '1'){echo ="Selected"}>1</option>
+            <option value="1"<?php if($subject['value'] = '1'){ echo "Selected";}?>>1</option>
           </select>
         </dd>
       </dl>
@@ -51,11 +53,11 @@ if(is_post_request()){
         <dt>Visible</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
-          <input type="checkbox" name="visible" value="1" if($visible = "1"){echo = "Checked"; }/>
+          <input type="checkbox" name="visible" value="1" <?php if($subject ['visible'] = "1"){echo "Checked"; }?>/>
         </dd>
       </dl>
       <div id="operations">
-        <input type="submit" value="Edit Subject" />
+        <input type="submit" value="Edit subject" />
       </div>
     </form>
 

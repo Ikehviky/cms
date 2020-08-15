@@ -3,17 +3,17 @@
 require_once('../../../private/initialize.php');
 
 if(is_post_request()){
-$menu_name = $_POST['menu_name'] ?? '';
-$position = $_POST['position'] ?? '';
-$visible = $_POST['visible'] ?? '';
+    
+    $subject['menu_name'] = $_POST['menu_name'] ?? '';
+    $subject['position'] = $_POST['position'] ?? '';
+    $subject['visible'] = $_POST['visible'] ?? '';
 
+    $result = insert_subject($subject);
+    $new_id = mysqli_insert_id($db);
+    redirect_to(url_for('/assets/subject/details.php?id='. $new_id));
 
-echo "Form Parameters";
-echo "</br>";
-echo "Menu Name: " . $menu_name . '</br>';
-echo "Position: " . $position . '</br>';
-echo "Visible: " . $visible . '</br>';
-}else{
-    redirect_to(url_for('/assets/subject/index.php'));
-}
+    }else{
+        redirect_to(url_for('/assets/subject/index.php'));
+    }
+
 ?>
